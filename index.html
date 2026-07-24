@@ -104,7 +104,7 @@
     -webkit-backdrop-filter:blur(8px);
     color:#fff;
   }
-  .dest-stamp .city{font-family:var(--font-display);font-weight:700;font-size:22px;color:#fff;}
+  .dest-stamp .city{font-family:var(--font-display);font-weight:700;font-size:clamp(14px,1.8vw,22px);color:#fff;}
   .dest-stamp .code{font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.85);}
   .hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;position:relative;z-index:1;width:100%;}
   .eyebrow{
@@ -123,7 +123,7 @@
   .step-title{font-size:28px;}
   .step-sub{color:var(--muted);font-size:14px;margin-top:2px;}
 
-  .layout{display:grid;grid-template-columns:1fr 340px;gap:48px;}
+  .layout{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:start;}
 
   /* ---------- race toggle ---------- */
   .race-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;}
@@ -141,7 +141,7 @@
   .race-card.sel{border-color:var(--ink);background:var(--ink);color:var(--paper);}
   .race-card .rc-code{font-family:var(--font-body);font-size:12px;color:var(--muted);}
   .race-card.sel .rc-code{color:#9a9a90;}
-  .race-card .rc-city{font-family:var(--font-display);font-weight:700;font-size:30px;margin:4px 0 6px;}
+  .race-card .rc-city{font-family:var(--font-display);font-weight:700;font-size:clamp(16px,2.2vw,30px);margin:4px 0 6px;}
   .race-card .rc-date{font-size:13px;color:var(--muted);}
   .race-card.sel .rc-date{color:#c9c9bd;}
   .race-card .rc-check{position:absolute;top:16px;right:16px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);}
@@ -226,14 +226,25 @@
   .consent input{margin-top:3px;}
 
   /* ---------- ticket summary (signature element) ---------- */
+  .ticket-wrapper{
+    position:relative;
+    width:100%;
+    z-index:100;
+    transition:opacity 0.2s ease;
+  }
+  .ticket-wrapper.floating{
+    position:fixed;
+    top:20px;
+    right:24px;
+    width:340px;
+  }
   .ticket{
-    position:sticky;top:20px;
     margin-top:44px;
     border:1.5px solid var(--ink);border-radius:16px;overflow:hidden;background:#fff;
   }
   .ticket-head{background:var(--ink);color:var(--paper);padding:16px 18px;}
   .ticket-head .th-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-body);font-size:10.5px;color:#9a9a90;}
-  .ticket-head .th-title{font-family:var(--font-display);font-weight:700;font-size:22px;margin-top:4px;}
+  .ticket-head .th-title{font-family:var(--font-display);font-weight:700;font-size:clamp(14px,1.6vw,22px);margin-top:4px;}
   .ticket-body{padding:18px;display:flex;flex-direction:column;gap:14px;}
   .t-row{display:flex;justify-content:space-between;gap:10px;font-size:13px;}
   .t-row .k{font-family:var(--font-body);font-size:10.5px;color:var(--muted);text-transform:uppercase;}
@@ -283,6 +294,7 @@
     .hero h1{font-size:34px;line-height:1.05;}
     .hero p.lede{font-size:13.5px;line-height:1.5;margin-top:36px;}
     .layout{grid-template-columns:1fr;}
+    .ticket-wrapper, .ticket-wrapper.floating{position:static !important;width:100% !important;right:auto !important;}
     .ticket{position:static;margin-top:8px;}
     .form-grid{grid-template-columns:minmax(0,1fr);}
     .form-grid .half{grid-column:1/-1;}
@@ -461,10 +473,8 @@
     </label>
   </section>
 
-</div>
-
 <!-- TICKET SUMMARY -->
-<div>
+<div class="ticket-wrapper">
   <div class="ticket">
     <div class="ticket-head">
       <div class="th-top"><span>CARTÃO DE EMBARQUE</span><span id="t-code">—</span></div>
@@ -484,6 +494,7 @@
   </div>
 </div>
 
+</div>
 </div>
 </div>
 
@@ -633,7 +644,7 @@ async function submitForm(){
   };
 
   // ─── WEBHOOK N8N ─────────────────────────────────────────────
-  const WEBHOOK_URL = 'https://n8n.lamarketing.com.br/webhook/5f02774e-024c-42bb-86fe-386501d11a67'; // ← substitua pela URL do seu webhook
+  const WEBHOOK_URL = 'https://SEU_WEBHOOK_N8N_AQUI'; // ← substitua pela URL do seu webhook
   try {
     await fetch(WEBHOOK_URL, {
       method: 'POST',
@@ -678,7 +689,28 @@ function showConfirmation(payload){
 }
 
 updateSummary();
+
+// Ativa o cartão fixo após passar o hero
+(function(){
+  var wrapper = document.querySelector('.ticket-wrapper');
+  var hero = document.querySelector('.hero');
+  if(!wrapper || !hero) return;
+
+  function onScroll(){
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    if(heroBottom < 0){
+      wrapper.classList.add('floating');
+    } else {
+      wrapper.classList.remove('floating');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, {passive: true});
+  onScroll();
+})();
+
 </script>
 
 </body>
 </html>
+<!-- removed old closing tags, appended sticky fix below -->

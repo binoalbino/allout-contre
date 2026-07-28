@@ -424,7 +424,7 @@ footer{
         </div>
       </div>
     </div>
-    <a class="size-guide-link" href="#" onclick="openSizeGuide(); return false;">Consultar tabela de medidas</a>
+    <a class="size-guide-link" href="#" onclick="openSizeGuide('top-a.png'); return false;">Consultar tabela de medidas</a>
 
     <div class="group-label" style="margin-top:32px;">Personalize o seu top</div>
     <div class="personalize">
@@ -474,7 +474,7 @@ footer{
         </div>
       </div>
     </div>
-    <a class="size-guide-link" href="#" onclick="openSizeGuide(); return false;">Consultar tabela de medidas</a>
+    <a class="size-guide-link" href="#" onclick="openSizeGuide('bermuda-a.png'); return false;">Consultar tabela de medidas</a>
   </section>
 
   <div class="perf"></div>
@@ -773,7 +773,8 @@ updateSummary();
   onScroll();
 })();
 
-function openSizeGuide(){
+function openSizeGuide(img){
+  document.getElementById('size-guide-img').src = 'img/' + img;
   document.getElementById('size-guide-overlay').classList.add('open');
 }
 function closeSizeGuide(){
@@ -789,7 +790,7 @@ document.addEventListener('keydown', function(e){
   <div class="size-guide-modal">
     <button class="size-guide-close" onclick="closeSizeGuide()" aria-label="Fechar">&times;</button>
     <div class="size-guide-title">Tabela de Medidas</div>
-    <div class="g-thumb"><img src="img/top-a.png" alt="Tabela de medidas"><div class="ph-badge">FOTO EM BREVE</div></div>
+    <div class="g-thumb"><img id="size-guide-img" src="img/top-a.png" alt="Tabela de medidas"><div class="ph-badge">FOTO EM BREVE</div></div>
   </div>
 </div>
 

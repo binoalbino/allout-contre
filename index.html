@@ -152,8 +152,6 @@
   .race-card .rc-city{font-family:var(--font-display);font-weight:700;font-size:clamp(16px,2.2vw,30px);margin:4px 0 6px;}
   .race-card .rc-date{font-size:13px;color:var(--muted);}
   .race-card .rc-check{position:absolute;bottom:16px;right:16px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);}
-  .race-card .race-thumb{aspect-ratio:1/1;height:auto;margin-bottom:14px;}
-  .race-card .race-thumb img{width:100%;height:100%;object-fit:cover;object-position:center top;}
   .race-card.sel .rc-check{background:var(--lime);border-color:var(--lime);}
   .race-card.sel .rc-check::after{content:'✓';color:var(--lime-ink);font-size:13px;display:flex;align-items:center;justify-content:center;height:100%;font-weight:700;}
 
@@ -338,6 +336,10 @@ footer{
     .ticket{position:static;margin-top:8px;}
     .form-grid{grid-template-columns:minmax(0,1fr);}
     .form-grid .half{grid-column:1/-1;}
+    .race-grid{gap:10px;}
+    .race-card{padding:12px;}
+    .garment-grid{gap:8px;}
+    .g-card{padding:8px;}
   }
 
   /* ---------- size guide modal ---------- */
@@ -382,8 +384,8 @@ footer{
       <p class="lede">É sobre as mulheres que encontramos pelo caminho, as histórias que compartilhamos e as memórias que construímos juntas.<br><br>Para celebrar essa experiência, a ALL OUT e a CONTRE criaram um look exclusivo para você! Agora é a sua vez de personalizá-lo e torná-lo ainda mais seu.</p>
     </div>
     <div class="destinations">
-      <div class="dest-stamp"><div><div class="city">Chicago</div><div class="code mono">08 a 12.10.2026</div></div><div class="code mono">CHI</div></div>
-      <div class="dest-stamp"><div><div class="city">Valência</div><div class="code mono">03 a 07.12.2026</div></div><div class="code mono">VLC</div></div>
+      <div class="dest-stamp"><div class="city">Chicago</div><div class="code mono">CHI</div></div>
+      <div class="dest-stamp"><div class="city">Valência</div><div class="code mono">VLC</div></div>
     </div>
   </div>
 </header>
@@ -404,15 +406,13 @@ footer{
     <div class="race-grid">
       <div class="race-card" data-race="chicago" data-code="CHI" data-city="Chicago" onclick="selectRace('chicago')">
         <div class="rc-check"></div>
-        <div class="g-thumb race-thumb"><img src="img/top_chicago.jpeg" alt="Chicago"></div>
         <div class="rc-city">Chicago</div>
-        <div class="rc-date">Maratona de Chicago · 08 a 12.10.2026</div>
+        <div class="rc-date">Maratona de Chicago</div>
       </div>
       <div class="race-card" data-race="valencia" data-code="VLC" data-city="Valência" onclick="selectRace('valencia')">
         <div class="rc-check"></div>
-        <div class="g-thumb race-thumb"><img src="img/top_valencia.jpeg" alt="Valência"></div>
         <div class="rc-city">Valência</div>
-        <div class="rc-date">Maratona de Valência · 03 a 07.12.2026</div>
+        <div class="rc-date">Maratona de Valência</div>
       </div>
     </div>
   </section>
@@ -560,7 +560,7 @@ footer{
     <img src="img/allout_black.png" class="logo-allout" alt="ALL OUT">
     <span class="x">×</span>
     <img src="img/contre_black.png" class="logo-contre" alt="CONTRE">
-</div>Experiência Internacional 2026</footer>
+</div></footer>
 
 </div>
 

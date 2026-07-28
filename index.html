@@ -345,7 +345,7 @@ footer{
   }
   .size-guide-overlay.open{display:flex;}
   .size-guide-modal{
-    position:relative;background:#fff;border-radius:16px;max-width:480px;width:100%;
+    position:relative;background:#fff;border-radius:16px;max-width:540px;width:100%;
     max-height:88vh;overflow:auto;padding:20px;
   }
   .size-guide-close{
@@ -358,8 +358,8 @@ footer{
     font-family:var(--font-display);font-weight:700;font-size:19px;
     padding-right:44px;margin-bottom:16px;
   }
-  .size-guide-modal .g-thumb{aspect-ratio:1/1;border-radius:9px;}
-  .size-guide-modal .g-thumb img{width:62%;height:62%;object-fit:contain;opacity:.92;}
+  .size-guide-modal .size-guide-img-wrap{display:flex;justify-content:center;}
+  .size-guide-modal .size-guide-img-wrap img{width:100%;max-width:500px;height:auto;border-radius:9px;display:block;}
 </style>
 </head>
 <body>
@@ -424,7 +424,7 @@ footer{
         </div>
       </div>
     </div>
-    <a class="size-guide-link" href="#" onclick="openSizeGuide('top-a.png'); return false;">Consultar tabela de medidas</a>
+    <a class="size-guide-link" href="#" onclick="openSizeGuide('tabela_tamanhos.png'); return false;">Consultar tabela de medidas</a>
 
     <div class="group-label" style="margin-top:32px;">Personalize o seu top</div>
     <div class="personalize">
@@ -474,7 +474,7 @@ footer{
         </div>
       </div>
     </div>
-    <a class="size-guide-link" href="#" onclick="openSizeGuide('bermuda-a.png'); return false;">Consultar tabela de medidas</a>
+    <a class="size-guide-link" href="#" onclick="openSizeGuide('tabela_tamanhos.png'); return false;">Consultar tabela de medidas</a>
   </section>
 
   <div class="perf"></div>
@@ -790,7 +790,7 @@ document.addEventListener('keydown', function(e){
   <div class="size-guide-modal">
     <button class="size-guide-close" onclick="closeSizeGuide()" aria-label="Fechar">&times;</button>
     <div class="size-guide-title">Tabela de Medidas</div>
-    <div class="g-thumb"><img id="size-guide-img" src="img/top-a.png" alt="Tabela de medidas"><div class="ph-badge">FOTO EM BREVE</div></div>
+    <div class="size-guide-img-wrap"><img id="size-guide-img" src="img/tabela_tamanhos.png" alt="Tabela de medidas"></div>
   </div>
 </div>
 

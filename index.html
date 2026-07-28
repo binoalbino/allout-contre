@@ -126,6 +126,7 @@
 
   /* ---------- section shell ---------- */
   section.step{padding:44px 0;}
+  section.step.step-locked{display:none;}
   .step-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;}
   .step-num{font-family:var(--font-body);font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:100px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex:none;}
   .step-title{font-size:28px;}
@@ -151,7 +152,8 @@
   .race-card .rc-city{font-family:var(--font-display);font-weight:700;font-size:clamp(16px,2.2vw,30px);margin:4px 0 6px;}
   .race-card .rc-date{font-size:13px;color:var(--muted);}
   .race-card .rc-check{position:absolute;bottom:16px;right:16px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);}
-  .race-card .race-thumb{aspect-ratio:auto;height:140px;margin-bottom:14px;}
+  .race-card .race-thumb{aspect-ratio:auto;height:260px;margin-bottom:14px;}
+  .race-card .race-thumb img{width:100%;height:100%;object-fit:cover;object-position:center top;}
   .race-card.sel .rc-check{background:var(--lime);border-color:var(--lime);}
   .race-card.sel .rc-check::after{content:'✓';color:var(--lime-ink);font-size:13px;display:flex;align-items:center;justify-content:center;height:100%;font-weight:700;}
 
@@ -173,7 +175,7 @@
     aspect-ratio:1/1;border-radius:9px;background:linear-gradient(155deg,#1c1c1c 0%,#3a3a3a 45%,#0a0a0a 100%);
     position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
   }
-  .g-thumb img{width:62%;height:62%;object-fit:contain;opacity:.92;}
+  .g-thumb img{width:100%;height:100%;object-fit:cover;object-position:center top;}
   .g-thumb .ph-badge{
     position:absolute;bottom:8px;left:8px;right:8px;
     font-family:var(--font-body);font-size:9.5px;color:#e7e7df;background:rgba(0,0,0,.45);
@@ -397,17 +399,41 @@ footer{
   <section class="step">
     <div class="step-head">
       <div class="step-num mono">01</div>
-      <div><div class="step-title">Escolha seu top</div><div class="step-sub">Ilustrações das peças entram aqui em breve.</div></div>
+      <div><div class="step-title">Qual prova você vai correr?</div></div>
+    </div>
+    <div class="race-grid">
+      <div class="race-card" data-race="chicago" data-code="CHI" data-city="Chicago" onclick="selectRace('chicago')">
+        <div class="rc-check"></div>
+        <div class="g-thumb race-thumb"><img src="img/top_chicago.jpeg" alt="Chicago"></div>
+        <div class="rc-city">Chicago</div>
+        <div class="rc-date">Maratona de Chicago · 08 a 12.10.2026</div>
+      </div>
+      <div class="race-card" data-race="valencia" data-code="VLC" data-city="Valência" onclick="selectRace('valencia')">
+        <div class="rc-check"></div>
+        <div class="g-thumb race-thumb"><img src="img/top_valencia.jpeg" alt="Valência"></div>
+        <div class="rc-city">Valência</div>
+        <div class="rc-date">Maratona de Valência · 03 a 07.12.2026</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf"></div>
+
+  <!-- STEP 2 -->
+  <section class="step step-locked" id="step-top">
+    <div class="step-head">
+      <div class="step-num mono">02</div>
+      <div><div class="step-title">Escolha seu top</div><div class="step-sub"><em>Imagens meramente ilustrativas.</em></div></div>
     </div>
 
     <div class="garment-grid" id="top-grid">
       <div class="g-card" data-item="topA" onclick="selectGarment('top','topA')">
-        <div class="g-thumb"><img src="img/top-a.png" alt="Opção 1 de top"><div class="ph-badge">FOTO EM BREVE</div></div>
-        <div class="g-info"><div class="g-name">Opção 1</div><div class="g-radio"></div></div>
+        <div class="g-thumb"><img id="top-a-img" src="" alt=""></div>
+        <div class="g-info"><div class="g-name" id="top-a-name">Opção 1</div><div class="g-radio"></div></div>
       </div>
       <div class="g-card" data-item="topB" onclick="selectGarment('top','topB')">
-        <div class="g-thumb"><img src="img/top-b.png" alt="Opção 2 de top"><div class="ph-badge">FOTO EM BREVE</div></div>
-        <div class="g-info"><div class="g-name">Opção 2</div><div class="g-radio"></div></div>
+        <div class="g-thumb"><img id="top-b-img" src="" alt=""></div>
+        <div class="g-info"><div class="g-name" id="top-b-name">Opção 2</div><div class="g-radio"></div></div>
       </div>
     </div>
 
@@ -443,21 +469,17 @@ footer{
 
   <div class="perf"></div>
 
-  <!-- STEP 2 -->
-  <section class="step">
+  <!-- STEP 3 -->
+  <section class="step step-locked" id="step-bermuda">
     <div class="step-head">
-      <div class="step-num mono">02</div>
-      <div><div class="step-title">Escolha sua bermuda</div><div class="step-sub">Ilustrações das peças entram aqui em breve.</div></div>
+      <div class="step-num mono">03</div>
+      <div><div class="step-title">Bermuda</div><div class="step-sub"><em>Imagens meramente ilustrativas.</em></div></div>
     </div>
 
-    <div class="garment-grid" id="bermuda-grid">
+    <div class="garment-grid single" id="bermuda-grid">
       <div class="g-card" data-item="bermudaA" onclick="selectGarment('bermuda','bermudaA')">
-        <div class="g-thumb"><img src="img/bermuda-a.png" alt="Opção 1 de bermuda"><div class="ph-badge">FOTO EM BREVE</div></div>
-        <div class="g-info"><div class="g-name">Opção 1</div><div class="g-radio"></div></div>
-      </div>
-      <div class="g-card" data-item="bermudaB" onclick="selectGarment('bermuda','bermudaB')">
-        <div class="g-thumb"><img src="img/bermuda-b.png" alt="Opção 2 de bermuda"><div class="ph-badge">FOTO EM BREVE</div></div>
-        <div class="g-info"><div class="g-name">Opção 2</div><div class="g-radio"></div></div>
+        <div class="g-thumb"><img id="bermuda-a-img" src="" alt=""></div>
+        <div class="g-info"><div class="g-name" id="bermuda-a-name">Opção 1</div><div class="g-radio"></div></div>
       </div>
     </div>
 
@@ -475,30 +497,6 @@ footer{
       </div>
     </div>
     <a class="size-guide-link" href="#" onclick="openSizeGuide('tabela_tamanhos.png'); return false;">Consultar tabela de medidas</a>
-  </section>
-
-  <div class="perf"></div>
-
-  <!-- STEP 3 -->
-  <section class="step">
-    <div class="step-head">
-      <div class="step-num mono">03</div>
-      <div><div class="step-title">Qual prova você vai correr?</div></div>
-    </div>
-    <div class="race-grid">
-      <div class="race-card" data-race="chicago" data-code="CHI" data-city="Chicago" onclick="selectRace('chicago')">
-        <div class="rc-check"></div>
-        <div class="g-thumb race-thumb"><img src="img/top-a.png" alt="Chicago"><div class="ph-badge">FOTO EM BREVE</div></div>
-        <div class="rc-city">Chicago</div>
-        <div class="rc-date">Maratona de Chicago · 08 a 12.10.2026</div>
-      </div>
-      <div class="race-card" data-race="valencia" data-code="VLC" data-city="Valência" onclick="selectRace('valencia')">
-        <div class="rc-check"></div>
-        <div class="g-thumb race-thumb"><img src="img/top-b.png" alt="Valência"><div class="ph-badge">FOTO EM BREVE</div></div>
-        <div class="rc-city">Valência</div>
-        <div class="rc-date">Maratona de Valência · 03 a 07.12.2026</div>
-      </div>
-    </div>
   </section>
 
   <div class="perf"></div>
@@ -590,11 +588,45 @@ footer{
 </div>
 
 <script>
-const GARMENT_NAMES = {
-  topA: 'Opção 1', topB: 'Opção 2',
-  bermudaA: 'Opção 1', bermudaB: 'Opção 2'
+const RACE_GARMENTS = {
+  chicago: {
+    top: {
+      topA: { name:'Top Chicago', img:'img/top_chicago.jpeg' },
+      topB: { name:'Regata Chicago', img:'img/regata_chicago.jpeg' }
+    },
+    bermuda: {
+      bermudaA: { name:'Bermuda Chicago', img:'img/bermuda.jpeg' }
+    }
+  },
+  valencia: {
+    top: {
+      topA: { name:'Top Valência', img:'img/top_valencia.jpeg' },
+      topB: { name:'Regata Valência', img:'img/regata_valencia.jpeg' }
+    },
+    bermuda: {
+      bermudaA: { name:'Bermuda Valência', img:'img/bermuda.jpeg' }
+    }
+  }
 };
 const RACE_NAMES = { chicago: {city:'Chicago', code:'CHI · ORD'}, valencia: {city:'Valência', code:'VLC'} };
+
+function garmentInfo(group, item){
+  if(!state.race || !item) return null;
+  return RACE_GARMENTS[state.race][group][item];
+}
+
+function populateGarmentOptions(){
+  const g = RACE_GARMENTS[state.race];
+  document.getElementById('top-a-img').src = g.top.topA.img;
+  document.getElementById('top-a-img').alt = g.top.topA.name;
+  document.getElementById('top-a-name').textContent = g.top.topA.name;
+  document.getElementById('top-b-img').src = g.top.topB.img;
+  document.getElementById('top-b-img').alt = g.top.topB.name;
+  document.getElementById('top-b-name').textContent = g.top.topB.name;
+  document.getElementById('bermuda-a-img').src = g.bermuda.bermudaA.img;
+  document.getElementById('bermuda-a-img').alt = g.bermuda.bermudaA.name;
+  document.getElementById('bermuda-a-name').textContent = g.bermuda.bermudaA.name;
+}
 
 let state = { race:null, top:null, bermuda:null, sizes:{top:null, bermuda:null}, text:'' };
 
@@ -609,8 +641,25 @@ function buildBarcode(el){
 buildBarcode(document.getElementById('barcode'));
 
 function selectRace(race){
+  const changed = state.race !== race;
   state.race = race;
   document.querySelectorAll('.race-card').forEach(c=>c.classList.toggle('sel', c.dataset.race===race));
+
+  if(changed){
+    state.top = null;
+    state.bermuda = null;
+    state.sizes.top = null;
+    state.sizes.bermuda = null;
+    document.querySelectorAll('#top-grid .g-card, #bermuda-grid .g-card').forEach(c=>c.classList.remove('sel'));
+    document.querySelectorAll('.size-opt').forEach(b=>b.classList.remove('sel'));
+    document.getElementById('top-size-label').textContent = 'Escolha o modelo acima';
+    document.getElementById('bermuda-size-label').textContent = 'Escolha o modelo acima';
+  }
+
+  populateGarmentOptions();
+  document.getElementById('step-top').classList.remove('step-locked');
+  document.getElementById('step-bermuda').classList.remove('step-locked');
+
   updateSummary();
 }
 
@@ -619,7 +668,8 @@ function selectGarment(group, item){
   const gridId = group==='top' ? 'top-grid' : 'bermuda-grid';
   document.querySelectorAll('#'+gridId+' .g-card').forEach(c=>c.classList.toggle('sel', c.dataset.item===item));
   const label = document.getElementById(group+'-size-label');
-  if(label) label.textContent = GARMENT_NAMES[item];
+  const info = garmentInfo(group, item);
+  if(label && info) label.textContent = info.name;
   updateSummary();
 }
 
@@ -651,8 +701,8 @@ function updateSummary(){
     document.getElementById('t-city').textContent = 'Escolha sua prova';
   }
   setRow('t-nome', nome);
-  setRow('t-top', state.top ? (GARMENT_NAMES[state.top]+(state.sizes.top?' · '+state.sizes.top:'')) : '', 'não escolhido');
-  setRow('t-bermuda', state.bermuda ? (GARMENT_NAMES[state.bermuda]+(state.sizes.bermuda?' · '+state.sizes.bermuda:'')) : '', 'não escolhida');
+  setRow('t-top', state.top ? (garmentInfo('top',state.top).name+(state.sizes.top?' · '+state.sizes.top:'')) : '', 'não escolhido');
+  setRow('t-bermuda', state.bermuda ? (garmentInfo('bermuda',state.bermuda).name+(state.sizes.bermuda?' · '+state.sizes.bermuda:'')) : '', 'não escolhida');
   setRow('t-personal', state.text, '—');
   updateSubmitState();
 }
@@ -700,8 +750,8 @@ async function submitForm(){
     nascimento: document.getElementById('f-nasc').value.trim(),
     email: document.getElementById('f-email').value.trim(),
     telefone: document.getElementById('f-tel').value.trim(),
-    top: GARMENT_NAMES[state.top],
-    bermuda: GARMENT_NAMES[state.bermuda],
+    top: garmentInfo('top', state.top).name,
+    bermuda: garmentInfo('bermuda', state.bermuda).name,
     tamanhos: state.sizes,
     personalizacaoTop: state.text,
     enviadoEm: new Date().toISOString()

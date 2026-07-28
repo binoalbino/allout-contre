@@ -337,6 +337,29 @@ footer{
     .form-grid{grid-template-columns:minmax(0,1fr);}
     .form-grid .half{grid-column:1/-1;}
   }
+
+  /* ---------- size guide modal ---------- */
+  .size-guide-overlay{
+    display:none;position:fixed;inset:0;background:rgba(10,10,10,.68);
+    z-index:1000;align-items:center;justify-content:center;padding:24px;
+  }
+  .size-guide-overlay.open{display:flex;}
+  .size-guide-modal{
+    position:relative;background:#fff;border-radius:16px;max-width:480px;width:100%;
+    max-height:88vh;overflow:auto;padding:20px;
+  }
+  .size-guide-close{
+    position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;
+    border:1.5px solid var(--line);background:#fff;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;color:var(--ink);
+  }
+  .size-guide-close:hover{background:var(--paper-2);}
+  .size-guide-title{
+    font-family:var(--font-display);font-weight:700;font-size:19px;
+    padding-right:44px;margin-bottom:16px;
+  }
+  .size-guide-modal .g-thumb{aspect-ratio:1/1;border-radius:9px;}
+  .size-guide-modal .g-thumb img{width:62%;height:62%;object-fit:contain;opacity:.92;}
 </style>
 </head>
 <body>
@@ -401,7 +424,7 @@ footer{
         </div>
       </div>
     </div>
-    <a class="size-guide-link" href="#" onclick="return false;">Consultar tabela de medidas</a>
+    <a class="size-guide-link" href="#" onclick="openSizeGuide(); return false;">Consultar tabela de medidas</a>
 
     <div class="group-label" style="margin-top:32px;">Personalize o seu top</div>
     <div class="personalize">
@@ -451,7 +474,7 @@ footer{
         </div>
       </div>
     </div>
-    <a class="size-guide-link" href="#" onclick="return false;">Consultar tabela de medidas</a>
+    <a class="size-guide-link" href="#" onclick="openSizeGuide(); return false;">Consultar tabela de medidas</a>
   </section>
 
   <div class="perf"></div>
@@ -750,7 +773,25 @@ updateSummary();
   onScroll();
 })();
 
+function openSizeGuide(){
+  document.getElementById('size-guide-overlay').classList.add('open');
+}
+function closeSizeGuide(){
+  document.getElementById('size-guide-overlay').classList.remove('open');
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeSizeGuide();
+});
+
 </script>
+
+<div class="size-guide-overlay" id="size-guide-overlay" onclick="if(event.target===this) closeSizeGuide();">
+  <div class="size-guide-modal">
+    <button class="size-guide-close" onclick="closeSizeGuide()" aria-label="Fechar">&times;</button>
+    <div class="size-guide-title">Tabela de Medidas</div>
+    <div class="g-thumb"><img src="img/top-a.png" alt="Tabela de medidas"><div class="ph-badge">FOTO EM BREVE</div></div>
+  </div>
+</div>
 
 </body>
 </html>

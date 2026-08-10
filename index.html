@@ -83,33 +83,19 @@
 
   /* ---------- hero ---------- */
   .hero{
-    padding:96px 0 56px;
+    padding:0;
     position:relative;
     overflow:hidden;
     display:grid;
     align-items:end;
-    min-height:calc(100vw * 0.4);
+    aspect-ratio:1580/600;
     background-color:var(--ink);
-    background-image:linear-gradient(180deg, rgba(8,8,8,.25) 0%, rgba(8,8,8,.45) 40%, rgba(8,8,8,.92) 100%), var(--hero-photo);
-    background-size:cover, contain;
-    background-repeat:no-repeat, no-repeat;
-    background-position:center, center;
+    background-image:var(--hero-photo);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
     color:#fff;
   }
-  .hero p.lede{font-size:17px;color:#ffffff;max-width:46ch;margin-top:0;}
-  .destinations{display:flex;flex-direction:column;gap:10px;}
-  .dest-stamp{
-    border:1.5px solid rgba(255,255,255,.4);
-    border-radius:10px;
-    padding:14px 16px;
-    display:flex;justify-content:space-between;align-items:center;
-    background:rgba(10,10,10,.55);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-    color:#fff;
-  }
-  .dest-stamp .city{font-family:var(--font-display);font-weight:700;font-size:clamp(14px,1.8vw,22px);color:#fff;}
-  .dest-stamp .code{font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.85);}
   .hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;position:relative;z-index:1;width:100%;}
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;
@@ -293,12 +279,10 @@ footer{
     :root{--hero-photo:url('img/820x1200.png');}
     .hero-grid{grid-template-columns:1fr;}
     .hero{
-      padding:32px 0;
-      min-height:calc(100vw * 1.4634);
+      padding:0;
+      aspect-ratio:820/1200;
     }
-    .destinations{display:none;}
     .eyebrow{margin-bottom:14px;font-size:11px;padding:5px 10px;}
-    .hero p.lede{font-size:13.5px;line-height:1.5;margin-top:0;}
     .layout{grid-template-columns:1fr;}
     .ticket-wrapper, .ticket-wrapper.floating{position:static !important;width:100% !important;right:auto !important;}
     .ticket{position:static;margin-top:8px;}
@@ -340,7 +324,6 @@ footer{
 <div class="topbar">
   <div class="wrap">
     <div class="lockup"><img src="img/allout_white.png" class="logo-allout" alt="ALL OUT"></div>
-    <div class="tag mono">O MUNDO ATRAVÉS DA CORRIDA</div>
   </div>
 </div>
 
@@ -348,13 +331,6 @@ footer{
 
 <header class="hero">
   <div class="wrap hero-grid">
-    <div>
-      <p class="lede">É sobre as mulheres que encontramos pelo caminho, as histórias que compartilhamos e as memórias que construímos juntas.<br><br>Para celebrar essa experiência, a ALL OUT e a CONTRE criaram um look exclusivo para você! Agora é a sua vez de escolher o seu e torná-lo ainda mais seu.</p>
-    </div>
-    <div class="destinations">
-      <div class="dest-stamp"><div class="city">Chicago</div><div class="code mono">CHI</div></div>
-      <div class="dest-stamp"><div class="city">Valência</div><div class="code mono">VLC</div></div>
-    </div>
   </div>
 </header>
 
@@ -460,7 +436,7 @@ footer{
   <section class="step">
     <div class="step-head">
       <div class="step-num mono">04</div>
-      <div><div class="step-title">Conte um pouco sobre você</div><div class="step-sub">Para confirmarmos sua vaga e falarmos com você sobre a entrega.</div></div>
+      <div><div class="step-title">Conte um pouco sobre você</div></div>
     </div>
     <div class="form-grid">
       <div class="full">
@@ -545,7 +521,7 @@ const RACE_GARMENTS = {
       topB: { name:'Regata Chicago', img:'img/regata_chicago.jpeg' }
     },
     bermuda: {
-      bermudaA: { name:'Bermuda Curta', img:'img/bermuda.jpeg' },
+      bermudaA: { name:'Bermuda Curta', img:'img/curta.jpeg' },
       bermudaB: { name:'Bermuda Longa', img:'img/bermuda.jpeg' }
     }
   },
@@ -555,7 +531,7 @@ const RACE_GARMENTS = {
       topB: { name:'Regata Valência', img:'img/regata_valencia.jpeg' }
     },
     bermuda: {
-      bermudaA: { name:'Bermuda Curta', img:'img/bermuda.jpeg' },
+      bermudaA: { name:'Bermuda Curta', img:'img/curta.jpeg' },
       bermudaB: { name:'Bermuda Longa', img:'img/bermuda.jpeg' }
     }
   }
